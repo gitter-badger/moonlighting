@@ -1,0 +1,37 @@
+p#notice
+  = notice
+p
+  strong
+    | First name:
+  = @person.first_name
+p
+  strong
+    | Last name:
+  = @person.last_name
+p
+  strong
+    | Bio:
+  = @person.bio
+p
+  strong
+    | Location:
+  = @person.location
+p
+  strong
+    | Phone number:
+  = @person.phone_number
+p
+  strong
+    | Country code:
+  = @person.country_code
+p
+  strong
+    | Languages:
+  = @person.languages
+p
+  strong
+    | Birth year:
+  = @person.birth_year
+= link_to 'Edit', edit_person_path(@person)
+|  | 
+= link_to 'Back', people_path
