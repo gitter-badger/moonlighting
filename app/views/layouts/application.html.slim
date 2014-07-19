@@ -3,8 +3,7 @@ html
   head
     title
       | Meet verified moonlighters techies
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = stylesheet_link_tag    "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag    "application", media: "screen", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     script data-turbolinks-track="true" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
     = csrf_meta_tags
@@ -18,13 +17,13 @@ html
           span.icon-bar
           span.icon-bar
           span.icon-bar
-        a.navbar-brand href="#"  Moonlighting
+        a.navbar-brand href="/"  Moonlighting
       #bs-example-navbar-collapse-1.collapse.navbar-collapse
 
         ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             li
-              = link_to current_user.email, edit_user_registration_path, method: :delete
+              = link_to current_user.email, edit_user_registration_path
 
             li
               = link_to "Logout", destroy_user_session_path, method: :delete
@@ -53,3 +52,5 @@ html
 
 
     = yield
+
+    = render "layouts/footer"
