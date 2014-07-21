@@ -1,7 +1,8 @@
 Moonlighting::Application.routes.draw do
 
-  devise_for :users
   resources :people
+
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
   root 'people#index'
 

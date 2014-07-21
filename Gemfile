@@ -5,10 +5,12 @@ gem 'rails', '4.0.2'
 gem 'pg'
 
 gem 'annotate'
+gem 'figaro'
 
 
 gem 'devise', '~> 3.2.4'
 gem 'omniauth'
+gem 'omniauth-linkedin'
 
 # assets and templates
 gem 'sass-rails', '~> 4.0.2'
@@ -22,7 +24,7 @@ gem 'slim-rails'
 
 
 group :development, :test do
-  gem "better_errors"
+  gem 'better_errors'
 end
 
 group :doc do
