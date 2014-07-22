@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: people
+# Table name: profiles
 #
 #  id           :integer          not null, primary key
 #  first_name   :string(255)
@@ -15,7 +15,7 @@
 #  updated_at   :datetime
 #
 
-class Person < ActiveRecord::Base
+class Profile < ActiveRecord::Base
 
   AVAILABILITY_OPTIONS= { "Looking for a job to start immediately." => 1,
                           "Employed but looking for a new challenge." => 2,
