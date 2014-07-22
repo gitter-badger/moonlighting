@@ -17,5 +17,20 @@
 
 class Person < ActiveRecord::Base
 
-  
+  AVAILABILITY_OPTIONS= { "Looking for a job to start immediately." => 1,
+                          "Employed but looking for a new challenge." => 2,
+                          "Employed and happy but a nice opportunity might change my mind." => 3,
+                          "Looking for freelancing jobs." => 4,
+                          "Looking for moonlighting jobs." => 5 }
+
+  belongs_to :user, dependent: :destroy
+
+  validates :first_name,    presence: true, length: { maximum: 25 }
+  validates :last_name,     presence: true, length: { maximum: 25 }
+  validates :location,      presence: true, length: { maximum: 50 }
+  validates :bio,           length: { maximum: 2000 }, on: :update
+  validates :websites,      presence: true
+#  validates :phone_number,  phony_plausible: {ignore_record_country_code: true}, on: :update
+
+
 end
