@@ -3,47 +3,47 @@ class ProfileController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @people = Person.all
+    @profile = Profile.all
   end
 
   def show
   end
 
   def new
-    @person = Person.new
+    @profile = Profile.new
   end
 
   def edit
   end
 
   def create
-    @person = Person.new(person_params)
+    @profile = Profile.new(person_params)
 
     respond_to do |format|
-      if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @person }
+      if @profile.save
+        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @profile }
       else
         format.html { render action: 'new' }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
     respond_to do |format|
-      if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+      if @profile.update(person_params)
+        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @person.destroy
+    @profile.destroy
     respond_to do |format|
       format.html { redirect_to people_url }
       format.json { head :no_content }
@@ -53,11 +53,11 @@ class ProfileController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
-      @person = Person.find(params[:id])
+      @profile = Profile.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:first_name, :last_name, :bio, :location, :phone_number, :country_code, :languages, :birth_year)
+      params.require(:profile).permit(:first_name, :last_name, :bio, :location, :phone_number, :country_code, :languages, :birth_year)
     end
 end

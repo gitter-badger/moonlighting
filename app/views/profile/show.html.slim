@@ -3,35 +3,35 @@ p#notice
 p
   strong
     | First name:
-  = @person.first_name
+  = @profile.first_name
 p
   strong
     | Last name:
-  = @person.last_name
+  = @profile.last_name
 p
   strong
     | Bio:
-  = @person.bio
+  = @profile.bio
 p
   strong
     | Location:
-  = @person.location
+  = @profile.location
 p
   strong
     | Phone number:
-  = @person.phone_number
+  = @profile.phone_number
 p
   strong
     | Country code:
-  = @person.country_code
+  = @profile.country_code
 p
   strong
     | Languages:
-  = @person.languages
+  = @profile.languages
 p
   strong
     | Birth year:
-  = @person.birth_year
-= link_to 'Edit', edit_person_path(@person)
-|  | 
+  = @profile.birth_year
+= link_to 'Edit', edit_person_path(@profile)
+|  |
 = link_to 'Back', people_path

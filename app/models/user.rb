@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
-  has_one :person, autosave: true
-  accepts_nested_attributes_for :person
+  has_one :profile, autosave: true
+  accepts_nested_attributes_for :profile
 
 
   def self.find_for_oauth(auth, signed_in_resource = nil)

@@ -1,11 +1,11 @@
 Moonlighting::Application.routes.draw do
 
-  resources :people
+  resources :profile
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
-  match '/people/:id' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  match '/profile/:id' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  root 'people#index'
+  root 'profile#index'
 
 end
