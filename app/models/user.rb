@@ -22,6 +22,7 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string(255)
 #  locked_at              :datetime
+#  unconfirmed_email      :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable
+         :lockable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
