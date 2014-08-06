@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable
+         :lockable, :confirmable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
         )
         user.skip_confirmation!
         user.save!
+        user.build_profile
       end
     end
 

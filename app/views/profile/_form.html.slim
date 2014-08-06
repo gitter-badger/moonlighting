@@ -11,34 +11,34 @@
   .field
     = f.label :first_name
     br
-    = f.text_field :first_name
+    = f.text_field :first_name, class: "form-control"
   .field
     = f.label :last_name
     br
-    = f.text_field :last_name
+    = f.text_field :last_name, class: "form-control"
   .field
     = f.label :bio
     br
-    = f.text_area :bio
+    = f.text_area :bio, class: "form-control"
   .field
     = f.label :location
     br
-    = f.text_field :location
+    = f.text_field :location, class: "form-control"
   .field
     = f.label :phone_number
     br
-    = f.text_field :phone_number
+    = f.text_field :phone_number, class: "form-control"
   .field
     = f.label :country_code
     br
-    = f.text_field :country_code
+    = f.text_field :country_code, class: "form-control"
   .field
     = f.label :languages
     br
-    = f.text_field :languages
+    = f.text_field :languages, class: "form-control"
   .field
     = f.label :birth_year
     br
-    = f.number_field :birth_year
+    = f.number_field :birth_year, class: "form-control"
   .actions
-    = f.submit
+    = f.submit "Submit", class: "btn btn-default"

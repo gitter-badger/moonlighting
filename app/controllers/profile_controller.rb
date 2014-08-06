@@ -10,6 +10,10 @@ class ProfileController < ApplicationController
     @profile = Profile.find_by_user_id(current_user.id)
   end
 
+  def edit
+    @profile = Profile.find_by_user_id(current_user.id)
+  end
+
   def new
     @profile = Profile.new
   end
