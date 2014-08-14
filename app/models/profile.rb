@@ -30,7 +30,7 @@ class Profile < ActiveRecord::Base
   validates :last_name,     presence: true, length: { maximum: 25 }
   validates :location,      presence: true, length: { maximum: 50 }
   validates :bio,           length: { maximum: 2000 }, on: :update
-  validates :websites,      presence: true
+#  validates :websites,      presence: true
 #  validates :phone_number,  phony_plausible: {ignore_record_country_code: true}, on: :update
 
 

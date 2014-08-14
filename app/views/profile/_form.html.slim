@@ -2,13 +2,19 @@
   - if @profile.errors.any?
     #error_explanation
       h2
-        = pluralize(@person.errors.count, "error")
+        = pluralize(@profile.errors.count, "error")
         |  prohibited this person from being saved:
       ul
-        - @person.errors.full_messages.each do |msg|
+        - @profile.errors.full_messages.each do |msg|
           li
             = msg
   .field
+    = @profile.user_id
+    br
+    br
+    = @profile.id
+    br
+    br
     = f.label :first_name
     br
     = f.text_field :first_name, class: "form-control"

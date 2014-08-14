@@ -19,6 +19,7 @@ class ProfileController < ApplicationController
   end
 
   def update
+    @profile = Profile.find_by_user_id(current_user.id)
     respond_to do |format|
       if @profile.update(person_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }

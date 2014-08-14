@@ -40,6 +40,40 @@ class User < ActiveRecord::Base
   has_one :profile, autosave: true
   accepts_nested_attributes_for :profile
 
+  SOCIALS = {
+  facebook: 'Facebook',
+  google_oauth2: 'Google',
+  linkedin: 'Linkedin'
+}
+
+
+has_many :indentities
+
+def self.from_omniauth(auth, current_user)
+  authorization = Identity.where(:provider => auth.provider, :uid => auth.uid.to_s,
+                                      :token => auth.credentials.token).first_or_initialize
+  authorization.profile_page = auth.info.urls.first.last unless authorization.persisted?
+  if authorization.user.blank?
+    user = current_user.nil? ? User.where('email = ?', auth['info']['email']).first : current_user
+    if user.blank?
+      user = User.new
+      user.skip_confirmation!
+      user.password = Devise.friendly_token[0, 20]
+      user.fetch_details(auth)
+      user.save!
+    end
+    authorization.user = user
+    authorization.save!
+  end
+  authorization.user
+end
+
+def fetch_details(auth)
+  self.name = auth.info.name
+  self.email = auth.info.email
+  self.photo = URI.parse(auth.info.image)
+end
+
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -86,6 +120,23 @@ class User < ActiveRecord::Base
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def self.from_omniauth(auth, current_user)
+    authorization = Identity.where(:provider => auth.provider, :uid => auth.uid.to_s).first_or_initialize
+    if authorization.user.blank?
+      user = current_user.nil? ? User.where('email = ?', auth["info"]["email"]).first : current_user
+      if user.blank?
+        user = User.new
+        # user.name = auth.info.name
+        # user.email = auth.info.email
+        # user.avatar_url = auth.info.image
+        # user.avatar_url += "&s=40" if auth.provider == :github
+      end
+      authorization.user = user
+      authorization.save
+    end
+    authorization.user
   end
 
 end
