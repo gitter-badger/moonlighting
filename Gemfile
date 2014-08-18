@@ -22,8 +22,6 @@ gem 'font-awesome-rails', '~> 4.0.3.0'
 gem 'turbolinks'
 gem 'slim-rails'
 
-gem 'rails_12factor', group: :production
-
 group :development, :test do
   gem 'better_errors'
 end
