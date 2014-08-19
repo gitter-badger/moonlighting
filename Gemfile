@@ -22,6 +22,10 @@ gem 'font-awesome-rails', '~> 4.0.3.0'
 gem 'turbolinks'
 gem 'slim-rails'
 
+
+# Form helpers
+gem 'simple_form', '~> 3.0.1'
+
 group :development, :test do
   gem 'better_errors'
 end

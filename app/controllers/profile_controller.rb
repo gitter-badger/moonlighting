@@ -2,40 +2,26 @@ class ProfileController < ApplicationController
   before_action :authenticate_user!
   #before_action :set_person, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @profile = Profile.all
-  end
-
   def show
     @profile = Profile.find_by_user_id(current_user.id)
   end
 
   def edit
-    @profile = Profile.find_by_user_id(current_user.id)
-  end
-
-  def new
-    @profile = Profile.new
+    @user = current_user
   end
 
   def update
-    @profile = Profile.find_by_user_id(current_user.id)
+    @user = current_user
+    @user.assign_attributes(user_params)
+
     respond_to do |format|
-      if @profile.update(person_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+      if @user.update(user_params)
+        format.html { redirect_to @user.profile, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+        format.json { render json: @user.profile.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def destroy
-    @profile.destroy
-    respond_to do |format|
-      format.html { redirect_to people_url }
-      format.json { head :no_content }
     end
   end
 
@@ -46,7 +32,10 @@ class ProfileController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def person_params
-      params.require(:profile).permit(:first_name, :last_name, :bio, :location, :phone_number, :country_code, :languages, :birth_year)
-    end
+    def user_params
+      params.require(:user).permit( :email,
+                                  profile_attributes:[ :id, :first_name, :last_name, :birth_year,
+                                                      :location, :languages,  :country_code, :bio,
+                                                      :phone_number])
+  end
 end

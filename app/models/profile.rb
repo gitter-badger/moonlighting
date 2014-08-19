@@ -33,5 +33,8 @@ class Profile < ActiveRecord::Base
 #  validates :websites,      presence: true
 #  validates :phone_number,  phony_plausible: {ignore_record_country_code: true}, on: :update
 
+  def name
+    "#{first_name} #{last_name}"
+  end
 
 end
